@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { CompanyModule } from './company/company.module';
-import { myModule as BuilderModule } from './builder/module';
-import { myModule as DriverModule } from './driver/module';
-import { myModule as MachineModule } from './machine/module';
-import { myModule as MachineDriverModule } from './machine-driver/module';
+import { GasStationModule } from './gas-station/gas-station.module';
+import {GasStationBranchModule} from './gas-station-branch/module';
+import {FuelTypeModule} from './fuel-types/module';
+import {GasStationFuelTypeModule} from './gas-station-fuel-type/module';
 
 @Module({
   imports: [
@@ -21,11 +20,10 @@ import { myModule as MachineDriverModule } from './machine-driver/module';
       autoLoadModels: true,
       logging: true,
     }),
-    CompanyModule,
-    BuilderModule,
-    DriverModule,
-    MachineDriverModule,
-    MachineModule,
+    GasStationModule,
+    FuelTypeModule,
+    GasStationBranchModule,
+    GasStationFuelTypeModule
   ],
   controllers: [],
   providers: [],
