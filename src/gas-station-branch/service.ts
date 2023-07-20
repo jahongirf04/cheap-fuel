@@ -1,27 +1,27 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { Machine } from './models/model';
+import { GasStationBranch } from './models/model';
 import { AddDto } from './dto/add-dto';
 import { UpdateDto } from './dto/update-dto';
 
 @Injectable()
 export class Service {
   constructor(
-    @InjectModel(Machine)
-    private tableRepo: typeof Machine,
+    @InjectModel(GasStationBranch)
+    private tableRepo: typeof GasStationBranch,
   ) {}
 
-  async add(addDto: AddDto): Promise<Machine> {
+  async add(addDto: AddDto): Promise<GasStationBranch> {
     const company = await this.tableRepo.create(addDto);
     return company;
   }
 
   async get() {
-    const args = await this.tableRepo.findAll({include: { all: true }});
+    const args = await this.tableRepo.findAll({ include: { all: true } });
     return args;
   }
 
-  async getOne(myId): Promise<Machine> {
+  async getOne(myId): Promise<GasStationBranch> {
     const arg = await this.tableRepo.findOne({
       where: { id: myId },
       include: { all: true },
@@ -29,7 +29,7 @@ export class Service {
     return arg;
   }
 
-  async update(updateDto: UpdateDto, myId): Promise<Machine> {
+  async update(updateDto: UpdateDto, myId): Promise<GasStationBranch> {
     await this.tableRepo.update(updateDto, { where: { id: myId } });
     return;
   }

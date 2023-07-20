@@ -18,7 +18,7 @@ import {GasStationFuelTypeModule} from './gas-station-fuel-type/module';
       database: process.env.POSTGRES_DB,
       models: [],
       autoLoadModels: true,
-      logging: true,
+      logging: false,
     }),
     GasStationModule,
     FuelTypeModule,

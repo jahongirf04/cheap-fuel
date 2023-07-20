@@ -1,27 +1,27 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { Driver } from './models/model';
+import { FuelType } from './models/model';
 import { AddDto } from './dto/add-dto';
 import { UpdateDto } from './dto/update-dto';
 
 @Injectable()
 export class Service {
   constructor(
-    @InjectModel(Driver)
-    private tableRepo: typeof Driver,
+    @InjectModel(FuelType)
+    private tableRepo: typeof FuelType,
   ) {}
 
-  async add(addDto: AddDto): Promise<Driver> {
+  async add(addDto: AddDto): Promise<FuelType> {
     const company = await this.tableRepo.create(addDto);
     return company;
   }
 
   async get() {
-    const args = await this.tableRepo.findAll({include: { all: true }});
+    const args = await this.tableRepo.findAll({ include: { all: true } });
     return args;
   }
 
-  async getOne(myId): Promise<Driver> {
+  async getOne(myId): Promise<FuelType> {
     const arg = await this.tableRepo.findOne({
       where: { id: myId },
       include: { all: true },
@@ -29,7 +29,7 @@ export class Service {
     return arg;
   }
 
-  async update(updateDto: UpdateDto, myId): Promise<Driver> {
+  async update(updateDto: UpdateDto, myId): Promise<FuelType> {
     await this.tableRepo.update(updateDto, { where: { id: myId } });
     return;
   }
